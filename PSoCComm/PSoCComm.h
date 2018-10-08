@@ -23,7 +23,7 @@ public:
 
 protected:
 	char dataToSend[commandLength];
-	const char getStatusByte[1] = {(char)195};
+	const char getStatusByte[1] = {254};
 	char lastGottenStatus_[statusRapportLength];
 
 private:
