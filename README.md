@@ -1,7 +1,9 @@
 # PSoCCommunication
 
 Requirements for use:
+
 On raspberry:
+
 call in console: systemctl disable hciuart
 
 Add "dtoverlay=pi3-disable-bt" to /boot/config.txt
