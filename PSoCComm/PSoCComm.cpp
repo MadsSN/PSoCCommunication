@@ -40,12 +40,6 @@ void PSoCComm::requestStatusRapport(){
 	writeToPSoC(getStatusByte, 1);
 }
 
-void PSoCComm::setBytes(int first, int second, int third){
- setFirstByte(first);
- setSecondByte(second);
- setThirdByte(third);
-}
-
 void PSoCComm::setFirstByte(int first) {
   dataToSend[1] = first;
 }
@@ -54,4 +48,18 @@ void PSoCComm::setSecondByte(int second) {
 }
 void PSoCComm::setThirdByte(int third) {
   dataToSend[3] = third;
+}
+
+void PSoCComm::turnRightMovement() {
+  dataToSend[3] = dataToSend[3] & ~0b11000000;
+  dataToSend[3] = dataToSend[3] | 0b10000000;
+}
+
+void PSoCComm::turnLeftMovement() {
+  dataToSend[3] = dataToSend[3] & ~0b11000000;
+  dataToSend[3] = dataToSend[3] | 0b01000000;
+}
+
+void PSoCComm::stopRotate() {
+  dataToSend[3] = dataToSend[3] & ~0b11000000;
 }

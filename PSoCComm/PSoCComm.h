@@ -13,14 +13,20 @@
 
 #define statusRapportLength 2
 #define commandLength 4
+
+
 class PSoCComm {
 public:
 	PSoCComm();
 	virtual ~PSoCComm();
 	void sendCommand();
 	const char* getStatus();
-	void setBytes(int first, int second, int third);
-
+	void setFirstByte(int first);
+	void setSecondByte(int second);
+	void setThirdByte(int third);
+	void turnRightMovement();
+	void turnLeftMovement();
+	void stopRotate();
 protected:
 	char dataToSend[commandLength];
 	const char getStatusByte[1] = {254};
@@ -28,9 +34,7 @@ protected:
 
 private:
 	void requestStatusRapport();
-	void setFirstByte(int first);
-	void setSecondByte(int second);
-	void setThirdByte(int third);
+
 	virtual void readBytes(int) = 0;
 	virtual void writeToPSoC(const char [], int) = 0;
 
