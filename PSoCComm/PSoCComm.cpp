@@ -60,6 +60,50 @@ void PSoCComm::turnLeftMovement() {
   dataToSend[3] = dataToSend[3] | 0b01000000;
 }
 
-void PSoCComm::stopRotate() {
+void PSoCComm::stopTurn() {
   dataToSend[3] = dataToSend[3] & ~0b11000000;
+}
+
+
+void PSoCComm::tiltDownMovement() {
+	dataToSend[3] = dataToSend[3] & ~0b00110000;
+	dataToSend[3] = dataToSend[3] | 0b00100000;
+}
+
+void PSoCComm::tiltUpMovement() {
+	dataToSend[3] = dataToSend[3] & ~0b00110000;
+	dataToSend[3] = dataToSend[3] | 0b00010000;
+}
+
+void PSoCComm::stopTilt() {
+	dataToSend[3] = dataToSend[3] & ~0b00110000;
+}
+
+void PSoCComm::rotateRightMovement() {
+	dataToSend[3] = dataToSend[3] & ~0b00001100;
+	dataToSend[3] = dataToSend[3] | 0b00001000;
+}
+
+void PSoCComm::rotateLeftMovement() {
+	dataToSend[3] = dataToSend[3] & ~0b00001100;
+	dataToSend[3] = dataToSend[3] | 0b00000100;
+}
+
+void PSoCComm::stopRotate() {
+	dataToSend[3] = dataToSend[3] & ~0b00001100;
+}
+
+void PSoCComm::openHandMovement() {
+	dataToSend[3] = dataToSend[3] & ~0b00000011;
+	dataToSend[3] = dataToSend[3] | 0b00000010;
+}
+
+void PSoCComm::closeHandMovement() {
+	dataToSend[3] = dataToSend[3] & ~0b00000011;
+	dataToSend[3] = dataToSend[3] | 0b00000001;
+}
+
+void PSoCComm::stopHand() {
+	dataToSend[3] = dataToSend[3] & ~0b00000011;
+
 }

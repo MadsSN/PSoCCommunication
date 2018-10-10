@@ -26,7 +26,16 @@ public:
 	void setThirdByte(int third);
 	void turnRightMovement();
 	void turnLeftMovement();
+	void stopTurn();
+	void tiltDownMovement();
+	void tiltUpMovement();
+	void stopTilt();
+	void rotateRightMovement();
+	void rotateLeftMovement();
 	void stopRotate();
+	void openHandMovement();
+	void closeHandMovement();
+	void stopHand();
 protected:
 	char dataToSend[commandLength];
 	const char getStatusByte[1] = {254};
