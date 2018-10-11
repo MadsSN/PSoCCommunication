@@ -11,7 +11,7 @@
 #include <poll.h>
 #include <pthread.h>
 
-#define statusRapportLength 2
+#define statusRapportLength 6
 #define commandLength 4
 
 
@@ -21,9 +21,8 @@ public:
 	virtual ~PSoCComm();
 	void sendCommand();
 	const char* getStatus();
-	void setFirstByte(int first);
-	void setSecondByte(int second);
-	void setThirdByte(int third);
+	void setSecondAxisAngle(int first);
+	void setThirdAxisAngle(int second);
 	void turnRightMovement();
 	void turnLeftMovement();
 	void stopTurn();
@@ -37,9 +36,9 @@ public:
 	void closeHandMovement();
 	void stopHand();
 protected:
-	char dataToSend[commandLength];
+	char dataToSend[commandLength] = {255};
 	const char getStatusByte[1] = {254};
-	char lastGottenStatus_[statusRapportLength];
+	char lastGottenStatus_[statusRapportLength] = {0};
 
 private:
 	void requestStatusRapport();

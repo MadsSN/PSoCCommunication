@@ -4,15 +4,6 @@
 
 
 PSoCComm::PSoCComm(){
-  	lastGottenStatus_[0] = 0;
-    lastGottenStatus_[1] = 0;
-    lastGottenStatus_[2] = 0;
-    lastGottenStatus_[3] = 0;
-
-  	dataToSend[0] = 255;
-  	dataToSend[1] = 48;
-  	dataToSend[2] = 49;
-  	dataToSend[3] = 50;
 }
 
 PSoCComm::~PSoCComm(){
@@ -40,14 +31,20 @@ void PSoCComm::requestStatusRapport(){
 	writeToPSoC(getStatusByte, 1);
 }
 
-void PSoCComm::setFirstByte(int first) {
-  dataToSend[1] = first;
+void PSoCComm::setSecondAxisAngle(int first) {
+  if(first<0 || first>180){
+    dataToSend[1] = 192;
+  }else{
+    dataToSend[1] = first;
+  }
+
 }
-void PSoCComm::setSecondByte(int second) {
-  dataToSend[2] = second;
-}
-void PSoCComm::setThirdByte(int third) {
-  dataToSend[3] = third;
+void PSoCComm::setThirdAxisAngle(int second) {
+  if(second<0 || second>180){
+    dataToSend[2] = 192;
+  }else{
+    dataToSend[2] = second;
+  }
 }
 
 void PSoCComm::turnRightMovement() {
@@ -105,5 +102,4 @@ void PSoCComm::closeHandMovement() {
 
 void PSoCComm::stopHand() {
 	dataToSend[3] = dataToSend[3] & ~0b00000011;
-
 }
