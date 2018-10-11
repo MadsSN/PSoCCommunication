@@ -11,6 +11,12 @@ PSoCComm::~PSoCComm(){
 }
 
 void PSoCComm::sendCommand() {
+  printf("Prints command \n");
+  for(int x = 0;x<commandLength;x++){
+    printf("%d ",dataToSend[x]);
+  }
+  printf("\n");
+
   writeToPSoC(dataToSend,commandLength);
 }
 

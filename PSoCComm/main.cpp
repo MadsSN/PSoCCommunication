@@ -23,23 +23,26 @@ int main(){
   //while(true){
   comm->sendCommand();
   sleep(5);
-  printf("Expect all zero:\n");
+  printf("Expect:\n");
   state(comm);
   sleep(5);
-  comm->setSecondAxisAngle(200);
+  comm->setSecondAxisAngle(150);
   comm->closeHandMovement();
   comm->tiltUpMovement();
   comm->rotateLeftMovement();
   comm->turnLeftMovement();
   comm->sendCommand();
   sleep(5);
+  printf("Expect +25:\n");
   state(comm);
   comm->tiltDownMovement();
+  comm->setSecondAxisAngle(200);
   comm->rotateRightMovement();
   comm->turnRightMovement();
   comm->openHandMovement();
   comm->sendCommand();
   sleep(2);
+  printf("Expect -10:\n");
   state(comm);
   comm->stopHand();
   comm->stopTilt();
@@ -47,6 +50,7 @@ int main(){
   comm->stopRotate();
   comm->sendCommand();
   sleep(2);
+  printf("Expect same:\n");
   state(comm);
   return 0;
 }
